@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Guia da Apresentação — Trabalho 07</title>
+<style>
+  @page { size: A4; margin: 14mm 14mm 14mm 14mm; }
+  @page :first { margin: 0; }
+  :root {
+    --navy: #1F2A44; --terra: #B0573F; --peach: #E9CDB8; --sand: #BFA58E;
+    --olive: #6B7751; --bg: #FBF9F1; --ink: #2B2B2B; --muted: #6E6A60; --line: #DDD6C6;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Liberation Sans", Arial, sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.4; margin: 0; }
+  h1, h2, h3 { color: var(--navy); margin: 0; }
+  h1 { font-size: 30pt; font-style: italic; font-weight: 800; line-height: 1.05; text-transform: uppercase; }
+  h2 { font-size: 17pt; font-style: italic; font-weight: 800; text-transform: uppercase; margin-bottom: 6pt; }
+  h3 { font-size: 11.5pt; margin: 8pt 0 3pt; }
+  p { margin: 0 0 6pt; }
+  .kicker { color: var(--terra); font-weight: 700; letter-spacing: .18em; font-size: 8.5pt; text-transform: uppercase; margin-bottom: 4pt; }
+  .page { page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+
+  /* capa */
+  .cover { background: var(--navy); color: #fff; padding: 26mm 18mm; height: 297mm; position: relative; overflow: hidden; }
+  .cover h1 { color: #fff; font-size: 36pt; }
+  .cover .kicker { color: var(--sand); }
+  .cover .sub { color: var(--peach); font-size: 14pt; margin: 10pt 0 22pt; max-width: 150mm; }
+  .cover .box { background: #2C3A5C; border-radius: 8pt; padding: 12pt 14pt; margin-bottom: 10pt; }
+  .cover .box b { color: var(--peach); }
+  .cover .track { position: absolute; left: 0; right: 0; bottom: 0; height: 38mm; background: #B85A40;
+    background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 9mm, rgba(255,255,255,.55) 9mm, rgba(255,255,255,.55) 9.4mm); }
+  .cover .track span { position: absolute; left: 18mm; color: #fff; font-weight: 800; font-style: italic; font-size: 13pt; }
+
+  .idea { background: var(--peach); border-radius: 8pt; padding: 10pt 14pt; margin: 8pt 0 10pt; font-size: 12pt; color: var(--navy); }
+  .idea b { color: var(--terra); }
+
+  table { width: 100%; border-collapse: collapse; margin: 4pt 0 8pt; font-size: 9.5pt; }
+  th { background: var(--navy); color: #fff; text-align: left; padding: 5pt 6pt; }
+  td { border-bottom: 1px solid var(--line); padding: 3.5pt 6pt; vertical-align: top; }
+  td.k { font-weight: 800; color: var(--terra); white-space: nowrap; }
+  tr.off td { color: var(--muted); }
+
+  /* slides */
+  .slide { border: 1px solid var(--line); border-radius: 8pt; padding: 7pt 10pt; margin-bottom: 7pt; font-size: 9.5pt; page-break-inside: avoid; }
+  .slide-head { display: flex; gap: 10pt; align-items: flex-start; }
+  .slide-head img { width: 56mm; border-radius: 4pt; border: 1px solid var(--line); flex: none; }
+  .slide-head .meta { flex: 1; }
+  .num { display: inline-block; background: var(--navy); color: #fff; font-weight: 800; border-radius: 50%; width: 20pt; height: 20pt; text-align: center; line-height: 20pt; font-size: 9.5pt; margin-right: 5pt; }
+  .time { display: inline-block; background: var(--peach); color: var(--navy); font-weight: 700; font-size: 8.5pt; border-radius: 10pt; padding: 1pt 7pt; margin-left: 4pt; }
+  .say { background: #F4F1E8; border-radius: 6pt; padding: 5pt 9pt; margin-top: 5pt; font-style: italic; }
+  .say::before { content: "O que falar: "; font-style: normal; font-weight: 800; color: var(--terra); }
+  ul { margin: 3pt 0 6pt 14pt; padding: 0; }
+  li { margin-bottom: 2pt; }
+  .qa { margin-top: 6pt; font-size: 9.5pt; }
+  .qa b { color: var(--navy); }
+  .tip { color: var(--olive); font-weight: 700; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5pt 14pt; font-size: 9.5pt; }
+  .card { border: 1px solid var(--line); border-radius: 8pt; padding: 8pt 10pt; page-break-inside: avoid; }
+  .card h3 { margin-top: 0; }
+  .q { margin-bottom: 8pt; page-break-inside: avoid; }
+  .q .p { font-weight: 800; color: var(--navy); }
+  .q .p::before { content: "P: "; color: var(--terra); }
+  .q .r::before { content: "R: "; font-weight: 800; color: var(--olive); }
+  .check li { list-style: none; margin-left: -14pt; }
+  .check li::before { content: "☐  "; color: var(--terra); font-weight: 800; }
+  .warn { border-left: 0; background: #F6E7DE; border-radius: 8pt; padding: 8pt 12pt; }
+  .small { font-size: 9pt; color: var(--muted); }
+  .formula { font-family: "Liberation Mono", monospace; background: #F4F1E8; border-radius: 4pt; padding: 1pt 4pt; }
+</style>
+</head>
+<body>
+
+<!-- ============ CAPA ============ -->
+<section class="page cover">
+  <div class="kicker">Trabalho 07 · NBR 16636-1 · Guia do apresentador</div>
+  <h1>Como apresentar<br>“Do terreno ao<br>anteprojeto”</h1>
+  <p class="sub">Tudo o que você precisa para entender o trabalho, explicar cada slide com as suas palavras e responder às perguntas do professor.</p>
+  <div class="box"><b>Duração-alvo:</b> 7 a 8 minutos (o limite é de 5 a 10). Cerca de 45 segundos por slide.</div>
+  <div class="box"><b>A ideia central, em uma frase:</b> a NBR 16636-1 organiza o projeto em etapas que vêm em sequência, como uma corrida de revezamento. Cada etapa responde uma pergunta e entrega um produto (o “bastão”) para a próxima. O Arena Poty, meu TCC, mostra isso na prática.</div>
+  <div class="box"><b>Como usar:</b> leia a página 2 (conceitos), depois treine com as páginas 3 a 5 (slide a slide), em voz alta e com cronômetro. A página 6 traz as perguntas prováveis, e a página 7, o checklist de envio.</div>
+  <div class="track">
+    <span style="top:2mm">LV · Onde estou?</span>
+    <span style="top:11.4mm">PN · O que preciso?</span>
+    <span style="top:20.8mm">EP · Qual é a ideia?</span>
+    <span style="top:30.2mm">AP · Como fica de verdade?</span>
+  </div>
+</section>
+
+<!-- ============ CONCEITOS ============ -->
+<section class="page">
+  <div class="kicker">Antes de tudo</div>
+  <h2>Entenda o tema em 5 minutos</h2>
+
+  <h3>O que é a NBR 16636-1</h3>
+  <p>É a norma da ABNT (2017) que define <b>as diretrizes e a terminologia</b> dos serviços técnicos de projeto de arquitetura e urbanismo. Ela diz <b>quais são as etapas</b> de um projeto, <b>em que ordem</b> elas acontecem e <b>o que cada uma entrega</b>. A Parte 2 (NBR 16636-2) detalha o projeto arquitetônico, e esse é o tema dos Trabalhos 09 e 10. As duas partes substituíram as antigas NBR 13531 e NBR 13532.</p>
+
+  <div class="idea">O seu trabalho cobre as <b>etapas iniciais</b>: do levantamento ao anteprojeto. As finais (projeto legal, básico e executivo) são o Trabalho 08. <b>Não entre nelas</b>; só cite que existem.</div>
+
+  <h3>As etapas, com a pergunta que cada uma responde</h3>
+  <table>
+    <tr><th>Sigla</th><th>Etapa</th><th>Pergunta</th><th>O que entrega (o “bastão”)</th></tr>
+    <tr><td class="k">LV</td><td>Levantamento de dados</td><td>Onde estou?</td><td>Informações do terreno, do entorno e da legislação</td></tr>
+    <tr><td class="k">PN</td><td>Programa de necessidades</td><td>O que preciso?</td><td>Lista de ambientes com áreas</td></tr>
+    <tr><td class="k">EV</td><td>Estudo de viabilidade</td><td>Dá para fazer?</td><td>Análise técnica, legal e econômica</td></tr>
+    <tr><td class="k">EP</td><td>Estudo preliminar</td><td>Qual é a ideia?</td><td>Conceito, partido, croquis e pré-dimensionamento</td></tr>
+    <tr><td class="k">AP</td><td>Anteprojeto</td><td>Como fica de verdade?</td><td>Volumetria e funções definidas, plantas cotadas</td></tr>
+    <tr class="off"><td class="k">PL</td><td>Projeto legal</td><td>A prefeitura aprova?</td><td>Peças para aprovação (Trabalho 08)</td></tr>
+    <tr class="off"><td class="k">PB</td><td>Projeto básico (opcional)</td><td>Quanto custa?</td><td>Base para orçamento e licitação (Trabalho 08)</td></tr>
+    <tr class="off"><td class="k">PE</td><td>Projeto executivo</td><td>Como se constrói?</td><td>Detalhamento completo para a obra (Trabalho 08)</td></tr>
+  </table>
+  <p class="small">As perguntas (“Onde estou?” etc.) são um recurso didático desta apresentação, não um texto da norma. Diga isso se o professor perguntar.</p>
+
+  <h3>Palavras que vão aparecer</h3>
+  <div class="grid2">
+    <div><b>Conceito:</b> a ideia-força do projeto, em uma frase. No TCC: “Esporte como elemento de conexão”.</div>
+    <div><b>Partido:</b> as decisões que transformam o conceito em arquitetura (onde fica a praça, como os setores se ligam, como proteger do sol).</div>
+    <div><b>TO, taxa de ocupação:</b> quanto do terreno a projeção do prédio pode cobrir. ZOM-4: 80%.</div>
+    <div><b>IA, índice de aproveitamento:</b> quantas vezes a área do terreno se pode construir, somando os pavimentos. ZOM-4: 6,0.</div>
+    <div><b>TP, taxa de permeabilidade:</b> parte do terreno que deve deixar a água infiltrar. ZOM-4: 7,5%.</div>
+    <div><b>ZOM-4:</b> Zona de Ocupação Moderada 4, a zona do terreno em Teresina.</div>
+    <div><b>Brise:</b> lâminas (no TCC, de madeira) na frente da fachada, que barram o sol direto.</div>
+    <div><b>Cobogó:</b> elemento vazado (no TCC, cerâmico) que deixa passar ar e luz.</div>
+    <div><b>Beiral:</b> a parte da cobertura que avança além da parede e faz sombra.</div>
+    <div><b>Fluxograma:</b> diagrama que mostra como os setores se conectam.</div>
+  </div>
+
+  <h3>As contas do terreno (saiba fazer de cabeça)</h3>
+  <p>Terreno: <b>14.762,06 m²</b></p>
+  <ul>
+    <li>TO: <span class="formula">14.762,06 × 80% = 11.809,65 m²</span> de projeção máxima</li>
+    <li>IA: <span class="formula">14.762,06 × 6,0 = 88.572,36 m²</span> de área construída máxima</li>
+    <li>TP: <span class="formula">14.762,06 × 7,5% = 1.107,15 m²</span> permeáveis, no mínimo</li>
+    <li>Programa: <span class="formula">10.936 m²</span> no total = <span class="formula">7.560 m²</span> ao ar livre (69%) + <span class="formula">3.376 m²</span> edificados (31%)</li>
+  </ul>
+</section>
+
+<!-- ============ SLIDES 1-3 ============ -->
+<section class="page">
+  <div class="kicker">Slide a slide · parte 1</div>
+  <h2>Abertura e a norma</h2>
+
+  <div class="slide">
+    <div class="slide-head"><img src="img/s01.png" alt="Slide 1">
+      <div class="meta"><span class="num">1</span><b>Capa: “Do terreno ao anteprojeto”</b><span class="time">≈ 30 s</span>
+        <ul><li>Diga o número e o tema do trabalho.</li><li>Anuncie a analogia da corrida: é ela que prende a atenção.</li><li>As 4 raias da pista (LV, PN, EP, AP) são as 4 etapas que você vai percorrer.</li></ul>
+      </div></div>
+    <div class="say">Meu trabalho é o 07, sobre a NBR 16636-1 e as etapas iniciais do projeto. Para ficar fácil de acompanhar, vou tratar o projeto como uma corrida de revezamento, e o atleta dessa corrida é o meu TCC, o Centro Esportivo Arena Poty.</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><img src="img/s02.png" alt="Slide 2">
+      <div class="meta"><span class="num">2</span><b>O que diz a NBR 16636-1</b><span class="time">≈ 60 s</span>
+        <ul><li>À esquerda, os 3 itens que o enunciado pede: <b>objetivo</b>, <b>campo de abrangência</b> e <b>serviço técnico de projeto</b>.</li>
+          <li>À direita, a tabela com as 8 etapas. As 5 em terracota são as iniciais, tema de hoje.</li>
+          <li><span class="tip">Dica:</span> não leia a tabela inteira. Aponte as cores e siga.</li></ul>
+      </div></div>
+    <div class="say">A norma tem um objetivo simples: padronizar as diretrizes e os nomes dos serviços de projeto. Ela vale para arquitetura e urbanismo e para as engenharias ligadas a eles, em obra nova, reforma ou ampliação. E trata o projeto como um serviço feito em etapas sucessivas, cada uma com produtos definidos. As cinco primeiras da tabela são o tema de hoje.</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><img src="img/s03.png" alt="Slide 3">
+      <div class="meta"><span class="num">3</span><b>Projetar é um revezamento</b><span class="time">≈ 50 s</span>
+        <ul><li>Explique a analogia: cada etapa responde <b>uma pergunta</b> e passa o <b>bastão</b>.</li>
+          <li>Leia as perguntas das 5 etapas iniciais em voz alta. Isso fixa a sequência para a turma.</li>
+          <li>Apresente o “atleta”, o Arena Poty, com os 3 números do cartão.</li></ul>
+      </div></div>
+    <div class="say">Cada etapa responde uma pergunta: onde estou, o que preciso, dá para fazer, qual é a ideia e como fica de verdade. E cada uma entrega um produto para a próxima, como o bastão. Se alguém larga sem o bastão, o erro aparece lá na frente, como retrabalho. O atleta é o Arena Poty: 14.762 m² de terreno, 10.936 m² de programa e 9 setores.</div>
+  </div>
+</section>
+
+<!-- ============ SLIDES 4-6 ============ -->
+<section class="page">
+  <div class="kicker">Slide a slide · parte 2</div>
+  <h2>1ª e 2ª pernas: LV e PN</h2>
+
+  <div class="slide">
+    <div class="slide-head"><img src="img/s04.png" alt="Slide 4">
+      <div class="meta"><span class="num">4</span><b>LV: Onde estou?</b><span class="time">≈ 50 s</span>
+        <ul><li>Os 5 levantamentos da norma: <b>topográfico cadastral, físico, arquitetônico, fotográfico e entorno</b>. A legislação entra junto.</li>
+          <li>No mapa do TCC, aponte: norte, as vias, o sol (nasce a leste e se põe na Av. Raul Lopes) e o vento de leste.</li>
+          <li>O “arquitetônico” só se aplica quando já existe construção no lote.</li></ul>
+      </div></div>
+    <div class="say">A primeira perna é o levantamento: conhecer o lugar antes de desenhar. A norma pede o levantamento topográfico, o físico, o arquitetônico, o fotográfico e a análise do entorno. No TCC isso virou este mapa: as vias em volta, o sol, que se põe do lado da Avenida Raul Lopes, e o vento predominante de leste.</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><img src="img/s05.png" alt="Slide 5">
+      <div class="meta"><span class="num">5</span><b>LV: O que a lei deixa fazer?</b><span class="time">≈ 60 s</span>
+        <ul><li>A barra é o terreno inteiro. A parte terracota é o que pode ser ocupado (80%), e a verde é o mínimo permeável (7,5%).</li>
+          <li>Os 6 quadrados: com IA 6,0 dá para construir 6 vezes a área do terreno.</li>
+          <li>O corte à direita liga o levantamento ao partido: o problema real é o <b>clima</b>, não a área.</li>
+          <li><span class="tip">Dica:</span> o corte é um <b>esquema ilustrativo</b>. Não chame de detalhe executivo.</li></ul>
+      </div></div>
+    <div class="say">A legislação também faz parte do levantamento. Na ZOM-4, posso ocupar até 80% do terreno, preciso deixar pelo menos 7,5% permeável e posso construir até seis vezes a área do terreno. Ou seja, área sobra. O que pesa no desenho é o calor. Por isso o corte mostra a resposta: brise contra o sol da tarde, cobogó para o vento leste passar e uma grande cobertura com beiral.</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><img src="img/s06.png" alt="Slide 6">
+      <div class="meta"><span class="num">6</span><b>PN: O que preciso?</b><span class="time">≈ 50 s</span>
+        <ul><li>Cada quadradinho vale cerca de 1% do programa: 69 verdes (ao ar livre) e 31 terracota (edificado).</li>
+          <li>O maior setor edificado é o esportivo interno (1.510 m²: piscina, quadra coberta e 2 salas).</li>
+          <li>O PN é a ponte entre o levantamento e o estudo preliminar.</li></ul>
+      </div></div>
+    <div class="say">A segunda perna é o programa de necessidades: a lista de ambientes com suas áreas. No Arena Poty são 10.936 m², e quase 70% disso é ao ar livre: campo, pista, praças e estacionamento. Só 31% é edificado. Isso já diz que este é, antes de tudo, um projeto de espaços abertos.</div>
+  </div>
+</section>
+
+<!-- ============ SLIDES 7-10 ============ -->
+<section class="page">
+  <div class="kicker">Slide a slide · parte 3</div>
+  <h2>3ª e 4ª pernas: EP, AP e a chegada</h2>
+
+  <div class="slide">
+    <div class="slide-head"><img src="img/s07.png" alt="Slide 7">
+      <div class="meta"><span class="num">7</span><b>EP: Qual é a ideia?</b><span class="time">≈ 50 s</span>
+        <ul><li>Os 3 passos: <b>conceito → partido → dimensionamento prévio</b>. São os 3 pontos que o enunciado pede para o EP-ARQ.</li>
+          <li>Dimensionamento prévio: 3.376 m² edificados, muito abaixo dos 88.572 m² permitidos, e 1.800 m² de paisagismo, acima dos 1.107 m² exigidos.</li></ul>
+      </div></div>
+    <div class="say">A terceira perna é o estudo preliminar, em três passos. Primeiro o conceito: esporte como elemento de conexão. Depois o partido, que transforma a ideia em decisões: praça de acesso, pátios, conexão com o Rio Poti e conforto passivo. Por último, o dimensionamento prévio confere se tudo cabe no terreno, e cabe com folga.</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><img src="img/s08.png" alt="Slide 8">
+      <div class="meta"><span class="num">8</span><b>EP: A ideia no papel</b><span class="time">≈ 50 s</span>
+        <ul><li>Fluxograma: a praça central é o “coração” e distribui todos os setores.</li>
+          <li>Croqui: percorra os números de 1 a 9 com o dedo ou o ponteiro. A linha vermelha é a pista de corrida.</li></ul>
+      </div></div>
+    <div class="say">Estes são os produtos gráficos do estudo preliminar. O fluxograma mostra a praça central ligando todos os setores. No croqui, a praça de acesso fica na Avenida Raul Lopes, os blocos seguem ao longo da rua, a comedoria fica no centro, a pista de corrida contorna tudo e, ao fundo, ficam o campo e a quadra de tênis.</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><img src="img/s09.png" alt="Slide 9">
+      <div class="meta"><span class="num">9</span><b>AP: Como fica de verdade?</b><span class="time">≈ 50 s</span>
+        <ul><li>Leia a comparação linha a linha: <b>esboçado → definido</b>, <b>estimado → cotado</b>.</li>
+          <li>Os 3 pontos do enunciado: volumetria definida, solução funcional definitiva e plantas com dimensionamento rigoroso.</li>
+          <li>Seja honesto: o anteprojeto é a <b>próxima etapa</b> do TCC, então o slide mostra o que ela vai entregar.</li></ul>
+      </div></div>
+    <div class="say">A quarta perna é o anteprojeto: a ideia aprovada ganha medida. O volume do croqui vira volumetria definida, o fluxograma vira solução funcional com rotas acessíveis pela NBR 9050, as áreas estimadas viram plantas cotadas e o moodboard vira especificação de materiais. No meu TCC, esta é a próxima etapa, e ela é a base do projeto legal.</div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><img src="img/s10.png" alt="Slide 10">
+      <div class="meta"><span class="num">10</span><b>Linha de chegada</b><span class="time">≈ 30 s</span>
+        <ul><li>Repita as 4 perguntas. É o que a turma vai lembrar.</li><li>Feche com a frase da faixa e agradeça.</li></ul>
+      </div></div>
+    <div class="say">Para fechar: onde estou, o que preciso, qual é a ideia e como fica de verdade. Essas são as etapas iniciais da NBR 16636-1. Seguir essa ordem evita retrabalho e deixa o projeto claro para quem projeta, aprova e constrói. Obrigado.</div>
+  </div>
+</section>
+
+<!-- ============ PERGUNTAS ============ -->
+<section class="page">
+  <div class="kicker">Prepare-se</div>
+  <h2>Perguntas prováveis do professor</h2>
+
+  <div class="q"><div class="p">Qual a diferença entre estudo preliminar e anteprojeto?</div>
+    <div class="r">O EP é a ideia: conceito, partido e dimensões aproximadas, ainda em croqui. O AP é essa ideia definida: volumetria fechada, solução funcional final e plantas cotadas. O EP pode mudar bastante; o AP já é a base para o projeto legal.</div></div>
+
+  <div class="q"><div class="p">Qual é a ordem das etapas?</div>
+    <div class="r">LV → PN → EV → EP → AP → PL → PB → PE. O projeto básico é opcional; é usado principalmente em obras públicas e licitações.</div></div>
+
+  <div class="q"><div class="p">Por que o estudo de viabilidade (EV) não aparece no seu caso?</div>
+    <div class="r">O material do TCC não traz um estudo de viabilidade econômica formal. A verificação dos índices urbanísticos (TO, IA e TP) cumpre o papel de viabilidade legal simplificada: mostra que o programa cabe no terreno.</div></div>
+
+  <div class="q"><div class="p">O que entra no levantamento de dados?</div>
+    <div class="r">Levantamento topográfico cadastral, físico (solo, insolação, ventos, vegetação), arquitetônico (quando há construção existente), fotográfico e análise do entorno imediato. Na prática, também a legislação urbanística.</div></div>
+
+  <div class="q"><div class="p">O que é partido arquitetônico?</div>
+    <div class="r">É o conjunto de decisões principais que traduz o conceito em arquitetura: implantação, setorização, acessos e estratégias de conforto. No TCC: praça de acesso, pátios, conexão com o Rio Poti e conforto passivo.</div></div>
+
+  <div class="q"><div class="p">O que significa IA 6,0?</div>
+    <div class="r">Que a soma das áreas construídas de todos os pavimentos pode chegar a 6 vezes a área do terreno: 14.762,06 × 6 = 88.572,36 m².</div></div>
+
+  <div class="q"><div class="p">Por que usar brise e cobogó?</div>
+    <div class="r">Teresina é muito quente. O brise bloqueia o sol direto da tarde na fachada oeste, e o cobogó deixa o vento leste atravessar o prédio, ventilando sem ar-condicionado.</div></div>
+
+  <div class="q"><div class="p">O corte do slide 5 é um detalhe construtivo?</div>
+    <div class="r">Não. É um esquema ilustrativo das estratégias do partido. Detalhes construtivos são produzidos no projeto executivo, uma etapa final, que é tema do Trabalho 08.</div></div>
+
+  <div class="q"><div class="p">Essas perguntas (“Onde estou?” etc.) estão na norma?</div>
+    <div class="r">Não. São um recurso didático para resumir o objetivo de cada etapa. Os nomes e as siglas das etapas é que são da norma.</div></div>
+
+  <div class="q"><div class="p">Qual norma a NBR 16636 substituiu?</div>
+    <div class="r">As antigas NBR 13531 e NBR 13532, sobre elaboração de projetos de edificação.</div></div>
+</section>
+
+<!-- ============ CHECKLIST ============ -->
+<section class="page">
+  <div class="kicker">Antes de enviar</div>
+  <h2>Checklist de envio e apresentação</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Envio (pedido no enunciado)</h3>
+      <ul class="check">
+        <li>Prazo: até <b>28/09/2026</b></li>
+        <li>E-mail para: <b>danilo_servio@yahoo.com.br</b></li>
+        <li>Assunto: <b>Apresentação Gestão</b></li>
+        <li>Arquivo com o seu nome: <b>Claudio_Castro_de_Oliveira_Junior</b> (.pptx ou .pdf)</li>
+        <li>Abrir o arquivo no seu computador e conferir se nada saiu do lugar</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>No dia</h3>
+      <ul class="check">
+        <li>Treinar 2 vezes com cronômetro: alvo de 7 a 8 min</li>
+        <li>Levar o PDF como reserva, caso o PowerPoint desconfigure</li>
+        <li>No slide 8, apontar os números do croqui</li>
+        <li>Falar olhando para a turma; o slide é apoio, não leitura</li>
+        <li>Terminar repetindo as 4 perguntas</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:14pt">Tempo por slide</h3>
+  <table>
+    <tr><th>Slide</th><th>Tema</th><th>Tempo</th><th>Acumulado</th></tr>
+    <tr><td>1</td><td>Capa</td><td>0:30</td><td>0:30</td></tr>
+    <tr><td>2</td><td>O que diz a norma</td><td>1:00</td><td>1:30</td></tr>
+    <tr><td>3</td><td>Revezamento + Arena Poty</td><td>0:50</td><td>2:20</td></tr>
+    <tr><td>4</td><td>LV: Onde estou?</td><td>0:50</td><td>3:10</td></tr>
+    <tr><td>5</td><td>LV: O que a lei deixa fazer?</td><td>1:00</td><td>4:10</td></tr>
+    <tr><td>6</td><td>PN: O que preciso?</td><td>0:50</td><td>5:00</td></tr>
+    <tr><td>7</td><td>EP: Qual é a ideia?</td><td>0:50</td><td>5:50</td></tr>
+    <tr><td>8</td><td>EP: A ideia no papel</td><td>0:50</td><td>6:40</td></tr>
+    <tr><td>9</td><td>AP: Como fica de verdade?</td><td>0:50</td><td>7:30</td></tr>
+    <tr><td>10</td><td>Linha de chegada</td><td>0:30</td><td>8:00</td></tr>
+  </table>
+
+  <div class="warn" style="margin-top:12pt">
+    <h3 style="margin-top:0">Pontos de atenção (seja transparente se perguntarem)</h3>
+    <ul>
+      <li><b>Fotografias do terreno:</b> o enunciado pede fotos do estudo de caso, e o material do TCC não tem fotos do lote. Se tiver alguma, vale incluir no slide 4 (item “Fotográfico”).</li>
+      <li><b>Detalhe construtivo:</b> o slide 5 traz um corte <b>esquemático</b>. Detalhe construtivo de verdade é produto do projeto executivo.</li>
+      <li><b>Texto da norma:</b> o objetivo e a abrangência estão resumidos com palavras próprias. Se tiver acesso à norma, confira a redação oficial.</li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>
