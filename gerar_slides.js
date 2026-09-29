@@ -263,6 +263,32 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
     s.addNotes("Primeira perna: onde estou? Na norma, o levantamento é a coleta das informações de referência que mostram as condições que já existem no lugar. O enunciado pede o levantamento topográfico, físico, arquitetônico, fotográfico e do entorno. No TCC isso virou estes mapas: o terreno com medidas e 14.762 m²; o clima, com o sol se pondo do lado da Avenida Raul Lopes e o vento de leste; o sistema viário, em que a Raul Lopes é via de trânsito rápido ao lado do Rio Poti; o uso do solo, os gabaritos e os equipamentos do entorno. O lote está vazio, então não há edificação existente para levantar.");
   }
 
+  // ============================================================ 4b. LV: LEVANTAMENTO FOTOGRÁFICO
+  {
+    const s = pres.addSlide();
+    legHeader(s, 0, "O LUGAR EM FOTOS");
+    T(s, "Levantamento fotográfico: o registro do lote e do entorno, pedido no enunciado.", { x: 0.6, y: 1.68, w: 12.1, h: 0.4, fontSize: 15 });
+    const camera = await icon(fa.FaCamera, C.sand);
+    const caps = ["Lote vazio visto da avenida", "Ciclofaixa e iluminação pública", "Pedestres e corredores à noite", "A via já é usada para esporte"];
+    caps.forEach((c, i) => {
+      const x = 0.6 + i * 3.08, y = 2.25, w = 2.85, h = 2.14;
+      // moldura: arraste a foto por cima deste retângulo
+      s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w, h, rectRadius: 0.08, fill: { color: "EFEBE0" }, line: { color: C.sand, width: 1.25, dashType: "dash" } });
+      s.addImage({ data: camera, x: x + w / 2 - 0.25, y: y + 0.6, w: 0.5, h: 0.5 });
+      T(s, `FOTO ${i + 1}`, { x, y: y + 1.2, w, h: 0.3, align: "center", fontFace: HF, fontSize: 11, bold: true, color: C.sand, charSpacing: 2 });
+      T(s, [{ text: `${i + 1}  `, options: { bold: true, color: C.terra } }, { text: c }], { x, y: y + h + 0.08, w, h: 0.3, fontSize: 12, color: C.ink });
+    });
+    card(s, 0.6, 4.95, 12.1, 1.05);
+    T(s, [
+      { text: "O que as fotos mostram:  ", options: { bold: true, color: C.terra } },
+      { text: "lote vazio e cercado, carros estacionados ao longo da calçada, ciclofaixa e iluminação pública e, à noite, gente caminhando, correndo e pedalando. " },
+      { text: "O lugar já tem vocação esportiva.", options: { bold: true, color: C.navy } },
+    ], { x: 0.9, y: 4.95, w: 11.5, h: 1.05, valign: "middle", fontSize: 14 });
+    batonNote(s, "a prova de que o programa esportivo responde a um uso que já existe");
+    progress(s, 0);
+    s.addNotes("Ainda no levantamento, o registro fotográfico. As fotos mostram o lote vazio e cercado, a avenida com ciclofaixa e iluminação e, à noite, muita gente caminhando, correndo e pedalando. Ou seja, o lugar já é usado para esporte, e o centro esportivo responde a um uso que já existe.");
+  }
+
   // ============================================================ 5. LV: O QUE A LEI DEIXA
   {
     const s = pres.addSlide();
