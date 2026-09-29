@@ -307,17 +307,22 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
       { text: "no mínimo tem que ser permeável: 1.107 m²" },
     ], { x: bx + bw * 0.52, y: by + bh + 0.12, w: bw * 0.48, h: 0.55, align: "right", fontSize: 13, color: C.ink });
 
-    // IA = 6 terrenos
-    T(s, "Índice de aproveitamento 6,0", { x: bx, y: 4.35, w: 5, h: 0.35, fontFace: HF, fontSize: 13, bold: true, color: C.navy });
+    // IA 6,0: pilha de 6 "andares", cada um do tamanho do terreno
+    T(s, "Índice de aproveitamento 6,0", { x: bx, y: 4.3, w: 5, h: 0.35, fontFace: HF, fontSize: 13, bold: true, color: C.navy });
     for (let i = 0; i < 6; i++) {
-      s.addShape(pres.shapes.RECTANGLE, { x: bx + i * 0.85, y: 4.8, w: 0.72, h: 0.72, fill: { color: i === 0 ? C.navy : C.peach }, line: { color: C.navy, width: 1 } });
+      const y = 5.8 - i * 0.2;
+      s.addShape(pres.shapes.RECTANGLE, { x: bx, y, w: 2.4, h: 0.15, fill: { color: i === 0 ? C.navy : C.peach }, line: { color: C.navy, width: 0.75 } });
     }
-    T(s, "= até 6 vezes a área do terreno em área construída: 88.572 m²", { x: bx + 5.2, y: 4.8, w: 2.6, h: 0.72, valign: "middle", fontSize: 13 });
+    T(s, [
+      { text: "Somando todos os andares, posso construir até 6 vezes a área do terreno:", options: { breakLine: true } },
+      { text: "6 × 14.762 m² = 88.572 m²", options: { bold: true, color: C.navy, breakLine: true } },
+      { text: "O Arena Poty usa 3.376 m², cerca de 4% disso.", options: { color: C.terra, bold: true } },
+    ], { x: bx + 2.75, y: 4.7, w: 4.9, h: 1.3, valign: "middle", fontSize: 12.5 });
 
     // corte esquemático: resposta ao clima (esquema ilustrativo do partido)
     card(s, 8.55, 1.75, 4.2, 4.25);
     T(s, "Corte esquemático: resposta ao clima", { x: 8.75, y: 1.88, w: 3.85, h: 0.3, fontFace: HF, fontSize: 12, bold: true, color: C.navy });
-    T(s, "esquema ilustrativo do partido do TCC", { x: 8.75, y: 2.16, w: 3.85, h: 0.25, fontSize: 10, italic: true, color: C.muted });
+    T(s, "esquema elaborado para esta apresentação, a partir do partido do TCC", { x: 8.75, y: 2.16, w: 3.85, h: 0.25, fontSize: 10, italic: true, color: C.muted });
     const G = 5.2;
     // sol da tarde (oeste) e raios
     s.addShape(pres.shapes.OVAL, { x: 8.8, y: 2.55, w: 0.42, h: 0.42, fill: { color: "E3A857" }, line: { color: "E3A857" } });
@@ -346,33 +351,38 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
     ], { x: 8.75, y: 5.3, w: 3.85, h: 0.6, fontSize: 10, color: C.ink });
     batonNote(s, "quanto ocupar, quanto construir e quanto deixar permeável");
     progress(s, 0);
-    s.addNotes("Ainda no levantamento: a legislação. Na ZOM-4, até 80% do terreno pode ser ocupado, pelo menos 7,5% tem que ficar permeável e o aproveitamento é 6, ou seja, posso construir até seis vezes a área do terreno. Conclusão: área sobra; o que pesa no desenho é o clima quente. O corte esquemático à direita mostra a resposta do partido: brise contra o sol da tarde, cobogó para o vento leste passar e uma grande cobertura com beiral.");
+    s.addNotes("Ainda no levantamento: a legislação. Na ZOM-4, até 80% do terreno pode ser ocupado, pelo menos 7,5% tem que ficar permeável e o índice de aproveitamento é 6: somando todos os andares, posso construir até seis vezes a área do terreno, 88.572 m². O Arena Poty usa só 3.376 m², cerca de 4% disso. Conclusão: área sobra; o que pesa no desenho é o clima quente. O corte à direita é um esquema que eu fiz para esta apresentação, a partir do partido do TCC, e mostra a resposta ao clima: brise contra o sol da tarde, cobogó para o vento leste passar e uma grande cobertura com beiral.");
   }
 
   // ============================================================ 6. PN: O QUE PRECISO?
   {
     const s = pres.addSlide();
     legHeader(s, 1, "O QUE PRECISO?");
-    T(s, "Na norma (PGN, item 3.91): o conjunto sistematizado das necessidades do contratante. No Arena Poty, 10.936 m²:", { x: 0.6, y: 1.72, w: 7.2, h: 0.7, fontSize: 16 });
-    // waffle 10x10: 69 externas / 31 edificadas
-    const wx = 0.6, wy = 2.6, cs = 0.3, gap = 0.05;
-    for (let i = 0; i < 100; i++) {
-      const r = Math.floor(i / 10), c = i % 10;
-      const ext = i < 69;
-      s.addShape(pres.shapes.RECTANGLE, { x: wx + c * (cs + gap), y: wy + r * (cs + gap), w: cs, h: cs, fill: { color: ext ? C.olive : C.terra }, line: { color: ext ? C.olive : C.terra, width: 0.5 } });
-    }
-    T(s, "cada quadrado ≈ 1% do programa", { x: wx, y: wy + 3.55, w: 3.5, h: 0.3, fontSize: 11, italic: true, color: C.muted });
-    // legendas grandes
-    T(s, "69%", { x: 4.3, y: 2.55, w: 1.7, h: 0.75, fontFace: DF, fontSize: 40, bold: true, italic: true, color: C.olive });
+    T(s, "Na norma (PGN, item 3.91): as necessidades do contratante, organizadas.", { x: 0.6, y: 1.72, w: 7.7, h: 0.4, fontSize: 14 });
+    // barra única do programa: 69% ao ar livre / 31% edificado
+    const bx = 0.6, bw = 7.6, by = 2.75, bh = 1.0;
+    T(s, "Programa total: 10.936 m²", { x: bx, y: by - 0.38, w: 5, h: 0.32, fontFace: HF, fontSize: 13, bold: true, color: C.navy });
+    s.addShape(pres.shapes.RECTANGLE, { x: bx, y: by, w: bw * 0.69, h: bh, fill: { color: C.olive }, line: { color: "FFFFFF", width: 1 } });
+    s.addShape(pres.shapes.RECTANGLE, { x: bx + bw * 0.69, y: by, w: bw * 0.31, h: bh, fill: { color: C.terra }, line: { color: "FFFFFF", width: 1 } });
+    T(s, [{ text: "69%  ", options: { fontSize: 24, italic: true } }, { text: "ao ar livre · 7.560 m²" }], { x: bx + 0.2, y: by, w: bw * 0.69 - 0.3, h: bh, valign: "middle", fontFace: HF, fontSize: 14, bold: true, color: "FFFFFF" });
+    T(s, [{ text: "31%  ", options: { fontSize: 24, italic: true } }, { text: "edificado" }], { x: bx + bw * 0.69 + 0.15, y: by, w: bw * 0.31 - 0.2, h: bh, valign: "middle", fontFace: HF, fontSize: 14, bold: true, color: "FFFFFF" });
+    // o que entra em cada parte
     T(s, [
-      { text: "ao ar livre  ·  7.560 m²", options: { bold: true, breakLine: true } },
-      { text: "campo society, pista de corrida, quadra de tênis, praças, estacionamento, paisagismo" },
-    ], { x: 4.3, y: 3.3, w: 3.9, h: 0.8, fontSize: 12, color: C.ink });
-    T(s, "31%", { x: 4.3, y: 4.2, w: 1.7, h: 0.75, fontFace: DF, fontSize: 40, bold: true, italic: true, color: C.terra });
+      { text: "Ao ar livre (m²)", options: { bold: true, color: C.olive, breakLine: true } },
+      { text: "Campo society  1.800", options: { breakLine: true } },
+      { text: "Paisagismo  1.800", options: { breakLine: true } },
+      { text: "Estacionamento  1.500", options: { breakLine: true } },
+      { text: "Pista de corrida  1.100", options: { breakLine: true } },
+      { text: "Quadra de tênis  670", options: { breakLine: true } },
+      { text: "Praças  650  ·  Bicicletário  40" },
+    ], { x: bx, y: 4.0, w: 4.2, h: 1.95, valign: "top", fontSize: 12, color: C.ink });
     T(s, [
-      { text: "edificado  ·  3.376 m²", options: { bold: true, breakLine: true } },
-      { text: "piscina, quadra coberta, academia, cultural, saúde, administração, apoio" },
-    ], { x: 4.3, y: 4.95, w: 3.9, h: 0.8, fontSize: 12, color: C.ink });
+      { text: "Edificado (m²)", options: { bold: true, color: C.terra, breakLine: true } },
+      { text: "3.376 m² em 8 setores,", options: { breakLine: true } },
+      { text: "detalhados no quadro ao lado", options: { breakLine: true } },
+      { text: " ", options: { breakLine: true, fontSize: 6 } },
+      { text: "Conclusão: é, antes de tudo, um projeto de espaços abertos.", options: { bold: true, color: C.navy } },
+    ], { x: bx + 4.35, y: 4.0, w: 3.3, h: 1.95, valign: "top", fontSize: 12, color: C.ink });
 
     // setores edificados (barras horizontais simples)
     card(s, 8.6, 1.75, 4.15, 4.25);
