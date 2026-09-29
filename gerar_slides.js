@@ -128,9 +128,9 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
     T(s, "A NORMA", { x: 0.6, y: 0.4, w: 6, h: 0.35, fontFace: HF, fontSize: 13, bold: true, color: C.terra, charSpacing: 3 });
     T(s, "O QUE DIZ A NBR 16636-1", { x: 0.6, y: 0.78, w: 12, h: 0.85, fontFace: DF, fontSize: 38, bold: true, italic: true, color: C.navy });
     const defs = [
-      [fa.FaBullseye, "Objetivo", "Estabelecer as diretrizes e a terminologia para elaborar e desenvolver os serviços técnicos de projeto de arquitetura e urbanismo."],
-      [fa.FaLayerGroup, "Campo de abrangência", "Projetos de arquitetura e urbanismo e as engenharias ligadas a eles, em obras novas, reformas e ampliações. A Parte 2 detalha o projeto arquitetônico."],
-      [fa.FaTools, "Serviço técnico de projeto", "Conjunto de atividades feitas em etapas sucessivas, da coleta de dados até a documentação da obra. Cada etapa tem produtos definidos."],
+      [fa.FaBullseye, "Objetivo", "Estabelecer os procedimentos gerais e as diretrizes para produzir as principais etapas dos serviços de projeto arquitetônico e urbanístico (item 1, Escopo)."],
+      [fa.FaLayerGroup, "Campo de abrangência", "Projetos de edificações ou espaços abertos, públicos ou privados. Parte 1: diretrizes e terminologia · Parte 2: projeto arquitetônico · Parte 3: urbanístico. Substitui as NBR 13531 e 13532."],
+      [fa.FaTools, "Serviço técnico de projeto", "Atividade técnica de profissional habilitado, física ou intelectual (item 3.113), feita em etapas: períodos de trabalho em sequência (item 3.56)."],
     ];
     for (let i = 0; i < defs.length; i++) {
       const [ic, t, d] = defs[i];
@@ -141,19 +141,19 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
       T(s, d, { x: 1.6, y: y + 0.4, w: 4.5, h: 1.05, valign: "top", fontSize: 13 });
     }
     // tabela de parâmetros normativos: etapas
-    T(s, "Etapas do projeto de arquitetura previstas na norma", { x: 6.55, y: 1.8, w: 6.2, h: 0.35, fontFace: HF, fontSize: 14, bold: true, color: C.navy });
+    T(s, "Etapas do projeto e o que a Parte 1 diz de cada uma", { x: 6.55, y: 1.8, w: 6.2, h: 0.35, fontFace: HF, fontSize: 14, bold: true, color: C.navy });
     const hdr = { bold: true, color: "FFFFFF", fill: { color: C.navy }, fontFace: HF, fontSize: 11, valign: "middle" };
     const rowsData = [
-      ["LV-ARQ", "Levantamento de dados", "Dados do terreno, do entorno e da legislação"],
-      ["PN-ARQ", "Programa de necessidades", "Lista de ambientes, áreas e relações"],
-      ["EV-ARQ", "Estudo de viabilidade", "Análise técnica, legal e econômica da proposta"],
-      ["EP-ARQ", "Estudo preliminar", "Partido, soluções conceituais e pré-dimensionamento"],
-      ["AP-ARQ", "Anteprojeto", "Volumetria e solução funcional definidas, plantas cotadas"],
-      ["PL-ARQ", "Projeto legal", "Peças para aprovação na prefeitura e nos órgãos"],
-      ["PB-ARQ", "Projeto básico (opcional)", "Detalhamento para orçamento e licitação"],
-      ["PE-ARQ", "Projeto executivo", "Detalhamento completo para a obra"],
+      ["LV-ARQ", "Levantamento", "Condições preexistentes (LV-PRE, 3.67)"],
+      ["PN-ARQ", "Programa", "Necessidades do contratante (PGN, 3.91)"],
+      ["EV-ARQ", "Viabilidade", "Seleção de alternativas (3.49)"],
+      ["EP-ARQ", "Estudo preliminar", "Dimensiona os conceitos (3.54)"],
+      ["AP-ARQ", "Anteprojeto", "Detalhamento inicial (3.4)"],
+      ["PL-ARQ", "Projeto legal", "Aprovação e alvará (3.106)"],
+      ["PB-ARQ", "Projeto básico", "Não definido na Parte 1"],
+      ["PE-ARQ", "Projeto executivo", "Informações finais para a obra (3.96)"],
     ];
-    const rows = [[{ text: "Sigla", options: hdr }, { text: "Etapa", options: hdr }, { text: "Produto principal", options: hdr }]];
+    const rows = [[{ text: "Sigla", options: hdr }, { text: "Etapa", options: hdr }, { text: "O que a Parte 1 diz (item)", options: hdr }]];
     rowsData.forEach(([a, b, c], i) => {
       const on = i < 5;
       const base = { fontFace: BF, fontSize: 11, valign: "middle", color: on ? C.ink : C.muted, fill: { color: on ? "FFFFFF" : "F1EEE6" } };
@@ -163,14 +163,15 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
         { text: c, options: base },
       ]);
     });
-    s.addTable(rows, { x: 6.55, y: 2.2, w: 6.2, colW: [0.95, 2.05, 3.2], rowH: 0.44, border: { type: "solid", pt: 0.75, color: C.line } });
+    s.addTable(rows, { x: 6.55, y: 2.2, w: 6.2, colW: [0.95, 1.85, 3.4], rowH: 0.42, border: { type: "solid", pt: 0.75, color: C.line } });
     T(s, [
       { text: "■ ", options: { color: C.terra } },
       { text: "etapas iniciais: tema deste trabalho   " },
       { text: "■ ", options: { color: "E4DFD3" } },
-      { text: "etapas finais: Trabalho 08" },
-    ], { x: 6.55, y: 6.3, w: 6.2, h: 0.35, fontSize: 11, color: C.muted });
-    s.addNotes("A NBR 16636-1 tem como objetivo estabelecer as diretrizes e a terminologia dos serviços técnicos de projeto de arquitetura e urbanismo. Vale para esses projetos e para as engenharias ligadas a eles, em obra nova, reforma ou ampliação. O serviço técnico de projeto é organizado em etapas sucessivas, cada uma com seus produtos, como mostra a tabela. As cinco primeiras são as etapas iniciais, tema deste trabalho; as finais ficam para o Trabalho 08.");
+      { text: "etapas finais (Trab. 08)" },
+    ], { x: 6.55, y: 6.15, w: 6.2, h: 0.3, fontSize: 11, color: C.muted });
+    T(s, "Siglas -ARQ conforme o enunciado. Na Parte 1, o PL se chama “projeto para licenciamentos”.", { x: 6.55, y: 6.45, w: 6.2, h: 0.3, fontSize: 10, italic: true, color: C.muted });
+    s.addNotes("Pelo escopo, a NBR 16636-1 estabelece os procedimentos gerais e as diretrizes para produzir as principais etapas dos projetos arquitetônicos e urbanísticos. Vale para edificações e espaços abertos, públicos ou privados, e substitui as antigas NBR 13531 e 13532. Serviço técnico é a atividade de um profissional habilitado, e ela acontece em etapas, que a norma define como períodos de trabalho em sequência. A tabela resume o que a Parte 1 diz de cada etapa; as siglas terminadas em ARQ seguem o enunciado. As cinco primeiras são as etapas iniciais, tema deste trabalho; as finais ficam para o Trabalho 08.");
   }
 
   // ============================================================ 3. REVEZAMENTO + ESTUDO DE CASO
@@ -182,7 +183,7 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
     T(s, [
       { text: "Cada etapa responde uma pergunta e entrega um produto, o " },
       { text: "bastão", options: { bold: true, color: C.terra } },
-      { text: ", que a próxima usa como ponto de partida. Pular etapa vira retrabalho lá na frente." },
+      { text: ", para a próxima. A norma exige que o contratante aceite os documentos de uma etapa antes de a seguinte começar (item 5.2.2)." },
     ], { x: 0.6, y: 1.72, w: 9.3, h: 0.7, fontSize: 16 });
 
     const all = [
@@ -215,39 +216,51 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
       T(s, v, { x, y: 5.9, w: 2.1, h: 0.6, valign: "bottom", fontFace: DF, fontSize: 26, bold: true, italic: true, color: C.peach });
       T(s, l, { x, y: 6.52, w: 2.1, h: 0.3, fontSize: 12, color: C.sand });
     });
-    s.addNotes("Para ficar fácil de acompanhar, trato o projeto como um revezamento: cada etapa responde uma pergunta simples e passa um produto, o bastão, para a próxima. O atleta dessa corrida é o meu TCC, o Centro Esportivo Arena Poty, em Teresina: 14.762 m² de terreno e 10.936 m² de programa em 9 setores. Nos próximos slides ele corre as etapas iniciais.");
+    s.addNotes("Para ficar fácil de acompanhar, trato o projeto como um revezamento: cada etapa responde uma pergunta simples e passa um produto, o bastão, para a próxima. E isso está na norma: a introdução fala em etapas numa sequência predeterminada, e o item 5.2.2 diz que a aceitação dos documentos de uma etapa é condição para começar a seguinte. O atleta dessa corrida é o meu TCC, o Centro Esportivo Arena Poty, em Teresina: 14.762 m² de terreno e 10.936 m² de programa em 9 setores. Nos próximos slides ele corre as etapas iniciais.");
   }
 
   // ============================================================ 4. LV: ONDE ESTOU?
   {
     const s = pres.addSlide();
     legHeader(s, 0, "ONDE ESTOU?");
-    T(s, "Antes de desenhar, conhecer o lugar. A norma pede estes levantamentos:", { x: 0.6, y: 1.72, w: 6.9, h: 0.4, fontSize: 16 });
+    T(s, [
+      { text: "Na norma (LV-PRE, 3.67): ", options: { bold: true, color: C.terra } },
+      { text: "coleta das informações das condições preexistentes do lugar." },
+    ], { x: 0.6, y: 1.68, w: 12.1, h: 0.4, fontSize: 15 });
+    // o que o enunciado pede x o que o TCC produziu
     const items = [
-      [fa.FaDraftingCompass, "Topográfico cadastral", "limites, medidas, níveis, vias"],
-      [fa.FaSun, "Físico / ambiental", "sol, ventos, solo, vegetação"],
-      [fa.FaBuilding, "Arquitetônico", "o que já está construído"],
+      [fa.FaDraftingCompass, "Topográfico cadastral", "limites, medidas e área: 14.762,06 m²"],
+      [fa.FaSun, "Físico", "sol poente a oeste, vento leste"],
+      [fa.FaBuilding, "Arquitetônico", "lote vazio: nada construído a levantar"],
       [fa.FaCamera, "Fotográfico", "registro do lote e das visadas"],
-      [fa.FaCity, "Entorno imediato", "vizinhos, fluxos, equipamentos"],
-      [fa.FaBalanceScale, "Legislação", "zona, índices, recuos"],
+      [fa.FaCity, "Entorno imediato", "vias, usos, gabaritos e equipamentos"],
     ];
     for (let i = 0; i < items.length; i++) {
       const [ic, t, d] = items[i];
-      const col = i % 2, row = Math.floor(i / 2);
-      const x = 0.6 + col * 3.5, y = 2.3 + row * 1.25;
-      s.addShape(pres.shapes.OVAL, { x, y, w: 0.85, h: 0.85, fill: { color: C.terra }, line: { color: C.terra } });
-      s.addImage({ data: await icon(ic, "FFFFFF"), x: x + 0.22, y: y + 0.22, w: 0.41, h: 0.41 });
-      T(s, t, { x: x + 1.0, y: y + 0.03, w: 2.4, h: 0.4, fontFace: HF, fontSize: 14, bold: true, color: C.navy });
-      T(s, d, { x: x + 1.0, y: y + 0.43, w: 2.4, h: 0.4, fontSize: 13, color: C.muted });
+      const y = 2.25 + i * 0.78;
+      s.addShape(pres.shapes.OVAL, { x: 0.6, y, w: 0.6, h: 0.6, fill: { color: C.terra }, line: { color: C.terra } });
+      s.addImage({ data: await icon(ic, "FFFFFF"), x: 0.76, y: y + 0.16, w: 0.28, h: 0.28 });
+      T(s, t, { x: 1.35, y: y - 0.02, w: 3.3, h: 0.32, fontFace: HF, fontSize: 13, bold: true, color: C.navy });
+      T(s, d, { x: 1.35, y: y + 0.29, w: 3.4, h: 0.32, fontSize: 12, color: C.muted });
     }
-    // mapa do TCC
-    card(s, 7.75, 0.45, 5.0, 4.6);
-    s.addImage({ path: IMG("site.png"), x: 7.95, y: 0.58, w: 4.6, h: 4.35, sizing: { type: "contain", w: 4.6, h: 4.35 }, altText: "Mapa de condicionantes do TCC" });
-    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 7.75, y: 5.2, w: 5.0, h: 1.48, rectRadius: 0.1, fill: { color: C.navy }, line: { color: C.navy } });
-    T(s, "No TCC: lote cercado por vias; sol nasce a leste e se põe na Av. Raul Lopes (oeste); vento de leste", { x: 7.95, y: 5.2, w: 4.6, h: 1.48, valign: "middle", fontSize: 13, color: "FFFFFF" });
-    batonNote(s, "o mapa de condicionantes do terreno", 0.6, 6.2, 6.9);
+    // mapas do TCC
+    const maps = [
+      ["mapa_territ.png", "Terreno", "medidas e área"],
+      ["mapa_clima.png", "Clima", "sol e ventos"],
+      ["mapa_viario.png", "Sistema viário", "Raul Lopes: via rápida"],
+      ["mapa_uso.png", "Uso do solo", "residência, serviço, comércio"],
+      ["mapa_gabarito.png", "Gabarito", "térreo a 5+ pavimentos"],
+      ["mapa_equip.png", "Equipamentos", "escolas e esporte perto"],
+    ];
+    maps.forEach(([f, t, d], i) => {
+      const x = 5.05 + (i % 3) * 2.6, y = 2.2 + Math.floor(i / 3) * 1.95;
+      s.addImage({ path: IMG(f), x: x + 0.52, y, w: 1.4, h: 1.4, altText: t });
+      T(s, t, { x, y: y + 1.43, w: 2.45, h: 0.25, align: "center", fontFace: HF, fontSize: 11, bold: true, color: C.navy });
+      T(s, d, { x, y: y + 1.67, w: 2.45, h: 0.25, align: "center", fontSize: 10, color: C.muted });
+    });
+    batonNote(s, "o diagnóstico do lugar: terreno, clima e entorno mapeados");
     progress(s, 0);
-    s.addNotes("Primeira perna: onde estou? É o levantamento de dados. A norma pede o topográfico cadastral, o físico, o arquitetônico, o fotográfico e a análise do entorno; na prática também entra a legislação. No TCC isso virou este mapa: as vias do entorno, a trajetória do sol, que se põe do lado da Avenida Raul Lopes, e os ventos predominantes de leste.");
+    s.addNotes("Primeira perna: onde estou? Na norma, o levantamento é a coleta das informações de referência que mostram as condições que já existem no lugar. O enunciado pede o levantamento topográfico, físico, arquitetônico, fotográfico e do entorno. No TCC isso virou estes mapas: o terreno com medidas e 14.762 m²; o clima, com o sol se pondo do lado da Avenida Raul Lopes e o vento de leste; o sistema viário, em que a Raul Lopes é via de trânsito rápido ao lado do Rio Poti; o uso do solo, os gabaritos e os equipamentos do entorno. O lote está vazio, então não há edificação existente para levantar.");
   }
 
   // ============================================================ 5. LV: O QUE A LEI DEIXA
@@ -314,7 +327,7 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
   {
     const s = pres.addSlide();
     legHeader(s, 1, "O QUE PRECISO?");
-    T(s, "O programa de necessidades lista cada ambiente e sua área. No Arena Poty, 10.936 m² divididos assim:", { x: 0.6, y: 1.72, w: 7.2, h: 0.7, fontSize: 16 });
+    T(s, "Na norma (PGN, item 3.91): o conjunto sistematizado das necessidades do contratante. No Arena Poty, 10.936 m²:", { x: 0.6, y: 1.72, w: 7.2, h: 0.7, fontSize: 16 });
     // waffle 10x10: 69 externas / 31 edificadas
     const wx = 0.6, wy = 2.6, cs = 0.3, gap = 0.05;
     for (let i = 0; i < 100; i++) {
@@ -355,7 +368,7 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
   {
     const s = pres.addSlide();
     legHeader(s, 2, "QUAL É A IDEIA?");
-    T(s, "O estudo preliminar transforma o programa em uma ideia de projeto, em três passos:", { x: 0.6, y: 1.72, w: 12, h: 0.4, fontSize: 16 });
+    T(s, "Na norma (item 3.54): dimensionamento preliminar dos conceitos do projeto, podendo incluir alternativas. Em três passos:", { x: 0.6, y: 1.72, w: 12, h: 0.4, fontSize: 16 });
     const steps = [
       [fa.FaLightbulb, "CONCEITO", "a ideia-força", "“Esporte como elemento de conexão” entre pessoas, cidade e paisagem."],
       [fa.FaCompass, "PARTIDO", "a ideia vira decisão", "Praça de acesso como transição · pátios que ligam os setores · conexão com o Rio Poti · brises, vegetação, grandes coberturas e ventilação natural."],
@@ -375,7 +388,7 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
     }
     batonNote(s, "conceito + partido + números conferidos. O desenho vem no próximo slide");
     progress(s, 2);
-    s.addNotes("Terceira perna: qual é a ideia? O estudo preliminar tem três passos. O conceito: esporte como elemento de conexão. O partido: praça de acesso, pátios, conexão com o Rio Poti e conforto passivo, que responde ao problema de clima visto no levantamento. E o dimensionamento prévio, que confere se tudo cabe: cabe com folga.");
+    s.addNotes("Terceira perna: qual é a ideia? A norma define o estudo preliminar como o dimensionamento preliminar dos conceitos do projeto, podendo ter alternativas. Aqui ele tem três passos. O conceito: esporte como elemento de conexão. O partido: praça de acesso, pátios, conexão com o Rio Poti e conforto passivo, que responde ao problema de clima visto no levantamento. E o dimensionamento prévio, que confere se tudo cabe: cabe com folga.");
   }
 
   // ============================================================ 8. EP: O DESENHO
@@ -406,15 +419,17 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
       T(s, [{ text: `${i + 1}  `, options: { bold: true, color: C.terra } }, { text: l }], { x, y, w: 2.3, h: 0.28, fontSize: 11 });
     });
     T(s, [{ text: "━  ", options: { bold: true, color: "C0392B" } }, { text: "linha vermelha: pista de corrida contornando o conjunto" }], { x: 0.6, y: 6.1, w: 4.6, h: 0.3, fontSize: 11 });
+    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: cx + 0.12, y: cy + 0.12, w: 4.0, h: 0.36, rectRadius: 0.18, fill: { color: C.navy }, line: { color: C.navy } });
+    T(s, "PLANO DE MASSAS  ·  item 3.87 da norma", { x: cx + 0.12, y: cy + 0.12, w: 4.0, h: 0.36, align: "center", valign: "middle", fontFace: HF, fontSize: 10, bold: true, color: "FFFFFF", charSpacing: 1 });
     progress(s, 2);
-    s.addNotes("Os produtos gráficos do estudo preliminar no TCC são dois. O fluxograma mostra a praça central como o coração do projeto, distribuindo todos os setores. E o croqui de implantação mostra a ideia no terreno: a praça de acesso na Avenida Raul Lopes, os blocos cultural, de atendimento, piscina, apoio e quadra ao longo da rua, a comedoria no centro, a pista de corrida contornando tudo e o campo e a quadra de tênis ao fundo.");
+    s.addNotes("Os produtos gráficos do estudo preliminar no TCC são dois. Na norma, o croqui é um plano de massas: estudo esquemático com volumetrias básicas e alternativas de implantação, item 3.87. O fluxograma mostra a praça central como o coração do projeto, distribuindo todos os setores. E o croqui de implantação mostra a ideia no terreno: a praça de acesso na Avenida Raul Lopes, os blocos cultural, de atendimento, piscina, apoio e quadra ao longo da rua, a comedoria no centro, a pista de corrida contornando tudo e o campo e a quadra de tênis ao fundo.");
   }
 
   // ============================================================ 9. AP: COMO FICA DE VERDADE?
   {
     const s = pres.addSlide();
     legHeader(s, 3, "COMO FICA DE VERDADE?");
-    T(s, "O anteprojeto pega a ideia aprovada e a deixa definida e medida. É a próxima etapa do Arena Poty:", { x: 0.6, y: 1.72, w: 9.3, h: 0.45, fontSize: 16 });
+    T(s, "Na norma (item 3.4): concepção e representação das informações técnicas iniciais de detalhamento. É a próxima etapa do TCC:", { x: 0.6, y: 1.72, w: 9.3, h: 0.45, fontSize: 16 });
     s.addImage({ path: IMG("atleta_goleira.png"), x: 10.2, y: 0.35, w: 2.6, h: 2.6 * 609 / 898, altText: "Goleira" });
     // de → para
     T(s, "NO ESTUDO PRELIMINAR", { x: 0.6, y: 2.35, w: 5.2, h: 0.35, fontFace: HF, fontSize: 12, bold: true, color: C.muted, charSpacing: 2 });
@@ -434,9 +449,9 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
       T(s, b, { x: 7.3, y, w: 5.35, h: 0.6, valign: "middle", fontSize: 14, bold: true, color: C.navy });
     });
     s.addImage({ path: IMG("materiais.png"), x: 0.6, y: 5.72, w: 5.6, h: 5.6 * 520 / 2918, altText: "Materiais do moodboard" });
-    batonNote(s, "segue para o projeto legal", 7.1, 5.97, 5.65);
+    batonNote(s, "base do projeto legal (PL)", 7.1, 5.97, 5.65);
     progress(s, 3);
-    s.addNotes("Quarta perna: como fica de verdade? O anteprojeto pega a ideia e define tudo com medida. O volume esboçado vira volumetria definida, o fluxograma vira solução funcional com rotas acessíveis, as áreas estimadas viram plantas cotadas e o moodboard vira especificação de materiais. Esse é o bastão para o projeto legal, que é tema do Trabalho 08.");
+    s.addNotes("Quarta perna: como fica de verdade? A norma define o anteprojeto como a etapa de concepção e representação das informações técnicas iniciais de detalhamento. Na prática, ele pega a ideia e define tudo com medida. O volume esboçado vira volumetria definida, o fluxograma vira solução funcional com rotas acessíveis, as áreas estimadas viram plantas cotadas e o moodboard vira especificação de materiais. Esse é o bastão para o projeto legal, que é tema do Trabalho 08.");
   }
 
   // ============================================================ 10. CHEGADA
@@ -445,7 +460,7 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
     s.background = { color: C.navy };
     T(s, "LINHA DE CHEGADA", { x: 0.6, y: 0.55, w: 12.1, h: 0.9, fontFace: DF, fontSize: 44, bold: true, italic: true, color: "FFFFFF" });
     T(s, "Quatro perguntas para lembrar das etapas iniciais", { x: 0.6, y: 1.45, w: 12.1, h: 0.4, fontSize: 17, color: C.sand });
-    const out = ["mapa de condicionantes + índices", "9 setores, 10.936 m²", "conceito, partido, fluxograma e croqui", "plantas cotadas e volumetria definida"];
+    const out = ["mapas do lugar + índices", "9 setores, 10.936 m²", "conceito, partido, fluxograma e croqui", "plantas cotadas e volumetria definida"];
     LEGS.forEach((l, i) => {
       const x = 0.6 + i * 3.1;
       s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y: 2.15, w: 2.85, h: 2.85, rectRadius: 0.15, fill: { color: i === 3 ? C.terra : "2C3A5C" }, line: { color: i === 3 ? C.terra : "3A4A70" } });
@@ -455,7 +470,7 @@ const shadow = () => ({ type: "outer", color: "000000", opacity: 0.13, blur: 8, 
     });
     track(s, 5.35, 0.75, 1);
     T(s, "Seguir a ordem da norma = menos retrabalho, mais clareza para quem projeta, aprova e constrói.", { x: 0.6, y: 5.35, w: 12.1, h: 0.75, valign: "middle", align: "center", fontFace: HF, fontSize: 16, bold: true, color: "FFFFFF" });
-    T(s, "Referências: ABNT NBR 16636-1:2017. Elaboração e desenvolvimento de serviços técnicos especializados de projetos arquitetônicos e urbanísticos, Parte 1: Diretrizes e terminologia.  ·  OLIVEIRA JÚNIOR, C. C. Centro Esportivo Arena Poty. TCC II, Arquitetura e Urbanismo, Teresina, 2026.", {
+    T(s, "Referências: ABNT NBR 16636-1:2017. Elaboração e desenvolvimento de serviços técnicos especializados de projetos arquitetônicos e urbanísticos, Parte 1: Diretrizes e terminologia (itens 1, 3.4, 3.54, 3.67, 3.87, 3.91, 5.2.2).  ·  OLIVEIRA JÚNIOR, C. C. Centro Esportivo Arena Poty. TCC II, Arquitetura e Urbanismo, Teresina, 2026.", {
       x: 0.6, y: 6.45, w: 12.1, h: 0.6, fontSize: 10, color: "AEB4C4",
     });
     s.addNotes("Para fechar, quatro perguntas: onde estou, o que preciso, qual é a ideia e como fica de verdade. São as quatro etapas iniciais da NBR 16636-1, e cada uma entregou um produto concreto no Arena Poty. Seguir essa ordem evita retrabalho e deixa o projeto claro para quem projeta, aprova e constrói. Obrigado.");
